@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Pokédex AF4</string>
+    <string name="title_activity_main">Pokédex AF4</string>
+    <string name="package_name">com.evelyn.pokedexaf4</string>
+    <string name="custom_url_scheme">com.evelyn.pokedexaf4</string>
+</resources>
