@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import {
   IonHeader,
@@ -8,7 +9,8 @@ import {
   IonContent,
   IonButton,
   IonButtons,
-  IonSpinner
+  IonSpinner,
+  IonSearchbar
 } from '@ionic/angular/standalone';
 
 import { Pokemon, PokemonService } from '../../services/pokemon.service';
@@ -28,15 +30,19 @@ import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card
     IonButton,
     IonButtons,
     IonSpinner,
-    PokemonCardComponent
+    PokemonCardComponent,
+    FormsModule,
+    IonSearchbar
   ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss']
 })
 export class HomePage implements OnInit {
   pokemons: Pokemon[] = [];
+  pokemonsFiltrados: Pokemon[] = [];
   carregando = true;
   mensagem = '';
+  termoBusca = '';
 
   constructor(
     private pokemonService: PokemonService,
@@ -51,6 +57,7 @@ export class HomePage implements OnInit {
     this.pokemonService.listar().subscribe({
       next: lista => {
         this.pokemons = lista;
+        this.pokemonsFiltrados = lista;
         this.carregando = false;
       },
       error: () => {
@@ -59,6 +66,16 @@ export class HomePage implements OnInit {
       }
     });
   }
+
+  filtrarPokemons() {
+    const termo = this.termoBusca.toLowerCase().trim();
+
+    this.pokemonsFiltrados = this.pokemons.filter(pokemon =>
+      pokemon.nome.toLowerCase().includes(termo) ||
+      pokemon.tipo.toLowerCase().includes(termo) ||
+      pokemon.id.toString().includes(termo)
+    );
+  }  
 
   async adicionarFavorito(pokemon: Pokemon) {
     await this.favoritosService.adicionar({
