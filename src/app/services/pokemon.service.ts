@@ -7,6 +7,11 @@ export interface Pokemon {
   nome: string;
   imagem: string;
   tipo: string;
+  hp: number;
+  ataque: number;
+  defesa: number;
+  velocidade: number;
+  poder: number;
 }
 
 @Injectable({
@@ -19,24 +24,40 @@ export class PokemonService {
 
   listar(): Observable<Pokemon[]> {
     return this.http.get<any>(this.apiUrl).pipe(
-      switchMap((resposta: any) => {
-        const requisicoes = resposta.results.map((pokemon: any) => {
-          return this.http.get<any>(pokemon.url);
-        });
+      switchMap(resposta => {
+        const requisicoes = resposta.results.map((pokemon: any) =>
+          this.http.get<any>(pokemon.url)
+        );
 
-        return forkJoin<any[]>(requisicoes);
+        return forkJoin(requisicoes);
       }),
+      map((detalhes: any[]) =>
+        detalhes.map(pokemon => {
+          const hp = this.buscarStat(pokemon, 'hp');
+          const ataque = this.buscarStat(pokemon, 'attack');
+          const defesa = this.buscarStat(pokemon, 'defense');
+          const especialAtaque = this.buscarStat(pokemon, 'special-attack');
+          const especialDefesa = this.buscarStat(pokemon, 'special-defense');
+          const velocidade = this.buscarStat(pokemon, 'speed');
 
-      map((detalhes: any[]) => {
-        return detalhes.map((pokemon: any) => {
           return {
             id: pokemon.id,
             nome: pokemon.name,
             imagem: pokemon.sprites.other['official-artwork'].front_default,
-            tipo: pokemon.types[0].type.name
+            tipo: pokemon.types[0].type.name,
+            hp,
+            ataque,
+            defesa,
+            velocidade,
+            poder: hp + ataque + defesa + especialAtaque + especialDefesa + velocidade
           };
-        });
-      })
+        })
+      )
     );
+  }
+
+  private buscarStat(pokemon: any, nomeStat: string): number {
+    const stat = pokemon.stats.find((item: any) => item.stat.name === nomeStat);
+    return stat ? stat.base_stat : 0;
   }
 }
