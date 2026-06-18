@@ -1,0 +1,14 @@
+<ion-card>
+  <img [src]="pokemon.imagem" [alt]="pokemon.nome" />
+
+  <ion-card-header>
+    <ion-card-title>{{ pokemon.nome | titlecase }}</ion-card-title>
+    <ion-card-subtitle>Tipo: {{ pokemon.tipo | titlecase }}</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-card-content>
+    <ion-button expand="block" (click)="favoritar.emit(pokemon)">
+      Adicionar aos favoritos
+    </ion-button>
+  </ion-card-content>
+</ion-card>
