@@ -1,5 +1,7 @@
 {
   "name": "pokedex-af4",
-  "integrations": {},
-  "type": "angular-standalone"
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
 }

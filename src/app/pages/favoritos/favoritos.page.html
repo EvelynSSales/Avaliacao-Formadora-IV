@@ -1,42 +1,55 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Favoritos</ion-title>
-
     <ion-buttons slot="start">
       <ion-button routerLink="/home">
         Voltar
       </ion-button>
     </ion-buttons>
+
+    <ion-title>Favoritos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <p *ngIf="favoritos.length === 0">
-    Nenhum pokémon favorito ainda.
-  </p>
+<ion-content>
+  <section class="topo">
+    <h1>Meus favoritos</h1>
+    <p>Edite suas observações ou remova Pokémon da sua lista.</p>
+  </section>
 
-  <div class="card" *ngFor="let favorito of favoritos">
-    <img [src]="favorito.imagem" [alt]="favorito.nome" />
-
-    <div class="info">
-      <h2>{{ favorito.nome | titlecase }}</h2>
-      <p>Tipo: {{ favorito.tipo | titlecase }}</p>
-
-      <ion-item>
-        <ion-label position="stacked">
-          Observação
-        </ion-label>
-
-        <ion-input [(ngModel)]="favorito.observacao"></ion-input>
-      </ion-item>
-
-      <ion-button expand="block" (click)="atualizar(favorito)">
-        Atualizar
-      </ion-button>
-
-      <ion-button expand="block" color="danger" (click)="remover(favorito)">
-        Remover
-      </ion-button>
+  <main class="conteudo">
+    <div class="vazio" *ngIf="favoritos.length === 0">
+      <div class="icone">♡</div>
+      <h2>Nenhum favorito ainda</h2>
+      <p>Volte para a Pokédex e escolha seus Pokémon favoritos.</p>
     </div>
-  </div>
+
+    <div class="card" *ngFor="let favorito of favoritos">
+      <div class="imagem">
+        <img [src]="favorito.imagem" [alt]="favorito.nome" />
+      </div>
+
+      <div class="info">
+        <h2>{{ favorito.nome | titlecase }}</h2>
+        <span>{{ favorito.tipo | titlecase }}</span>
+
+        <ion-item>
+          <ion-label position="stacked">
+            Observação
+          </ion-label>
+
+          <ion-input [(ngModel)]="favorito.observacao"></ion-input>
+        </ion-item>
+
+        <div class="botoes">
+          <ion-button size="small" (click)="atualizar(favorito)">
+            Atualizar
+          </ion-button>
+
+          <ion-button size="small" color="danger" fill="outline" (click)="remover(favorito)">
+            Remover
+          </ion-button>
+        </div>
+      </div>
+    </div>
+  </main>
 </ion-content>

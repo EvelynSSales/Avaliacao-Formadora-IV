@@ -36,15 +36,38 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
 
+:root {
+  --poke-red: #ef5350;
+  --poke-red-dark: #d32f2f;
+  --poke-yellow: #ffcb05;
+  --poke-blue: #2a75bb;
+  --poke-bg: #f6f7fb;
+  --poke-card: #ffffff;
+  --poke-text: #2b2b2b;
+  --poke-muted: #777777;
+}
+
 ion-toolbar {
-  --background: #ef5350;
+  --background: linear-gradient(135deg, var(--poke-red), var(--poke-red-dark));
   --color: #ffffff;
 }
 
+ion-title {
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
 ion-content {
-  --background: #fafafa;
+  --background: var(--poke-bg);
 }
 
 ion-button {
-  --border-radius: 12px;
+  --border-radius: 14px;
+  font-weight: 700;
+  text-transform: none;
+}
+
+ion-spinner {
+  display: block;
+  margin: 40px auto;
 }

@@ -1,9 +1,15 @@
 <ion-card>
-  <img [src]="pokemon.imagem" [alt]="pokemon.nome" />
+  <div class="imagem-area">
+    <span class="numero">#{{ pokemon.id }}</span>
+    <img [src]="pokemon.imagem" [alt]="pokemon.nome" />
+  </div>
 
   <ion-card-header>
     <ion-card-title>{{ pokemon.nome | titlecase }}</ion-card-title>
-    <ion-card-subtitle>Tipo: {{ pokemon.tipo | titlecase }}</ion-card-subtitle>
+
+    <ion-card-subtitle>
+      <span class="tipo">{{ pokemon.tipo | titlecase }}</span>
+    </ion-card-subtitle>
   </ion-card-header>
 
   <ion-card-content>

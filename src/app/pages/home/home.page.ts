@@ -68,6 +68,6 @@ export class HomePage implements OnInit {
       observacao: 'meu pokémon favorito'
     });
 
-    this.mensagem = 'pokémon adicionado aos favoritos!';
+    this.mensagem = `${pokemon.nome} foi adicionado aos favoritos!`;
   }
 }
