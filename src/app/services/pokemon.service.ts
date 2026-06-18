@@ -18,21 +18,22 @@ export interface Pokemon {
   providedIn: 'root'
 })
 export class PokemonService {
-  private apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=20';
+  private apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=151';
 
   constructor(private http: HttpClient) {}
 
   listar(): Observable<Pokemon[]> {
     return this.http.get<any>(this.apiUrl).pipe(
-      switchMap(resposta => {
-        const requisicoes = resposta.results.map((pokemon: any) =>
-          this.http.get<any>(pokemon.url)
-        );
+      switchMap((resposta: any) => {
+        const requisicoes: Observable<any>[] = resposta.results.map((pokemon: any) => {
+          return this.http.get<any>(pokemon.url);
+        });
 
         return forkJoin(requisicoes);
       }),
-      map((detalhes: any[]) =>
-        detalhes.map(pokemon => {
+
+      map((detalhes: any[]) => {
+        return detalhes.map((pokemon: any) => {
           const hp = this.buscarStat(pokemon, 'hp');
           const ataque = this.buscarStat(pokemon, 'attack');
           const defesa = this.buscarStat(pokemon, 'defense');
@@ -51,8 +52,8 @@ export class PokemonService {
             velocidade,
             poder: hp + ataque + defesa + especialAtaque + especialDefesa + velocidade
           };
-        })
-      )
+        });
+      })
     );
   }
 

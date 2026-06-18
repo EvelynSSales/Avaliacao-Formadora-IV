@@ -15,6 +15,11 @@ export interface Favorito {
   nome: string;
   imagem: string;
   tipo: string;
+  hp: number;
+  ataque: number;
+  defesa: number;
+  velocidade: number;
+  poder: number;
   observacao: string;
 }
 

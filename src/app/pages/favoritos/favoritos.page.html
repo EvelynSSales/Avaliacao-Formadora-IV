@@ -23,32 +23,57 @@
       <p>Volte para a Pokédex e escolha seus Pokémon favoritos.</p>
     </div>
 
-    <div class="card" *ngFor="let favorito of favoritos">
-      <div class="imagem">
+    <div class="carta" *ngFor="let favorito of favoritos">
+      <div class="carta-topo">
+        <div>
+          <h2>{{ favorito.nome | titlecase }}</h2>
+          <span>{{ favorito.tipo | titlecase }}</span>
+        </div>
+
+        <strong>HP {{ favorito.hp }}</strong>
+      </div>
+
+      <div class="carta-imagem">
         <img [src]="favorito.imagem" [alt]="favorito.nome" />
       </div>
 
-      <div class="info">
-        <h2>{{ favorito.nome | titlecase }}</h2>
-        <span>{{ favorito.tipo | titlecase }}</span>
+      <div class="poder-total">
+        Poder total: {{ favorito.poder }}
+      </div>
 
-        <ion-item>
-          <ion-label position="stacked">
-            Observação
-          </ion-label>
-
-          <ion-input [(ngModel)]="favorito.observacao"></ion-input>
-        </ion-item>
-
-        <div class="botoes">
-          <ion-button size="small" (click)="atualizar(favorito)">
-            Atualizar
-          </ion-button>
-
-          <ion-button size="small" color="danger" fill="outline" (click)="remover(favorito)">
-            Remover
-          </ion-button>
+      <div class="atributos">
+        <div>
+          <small>ATK</small>
+          <strong>{{ favorito.ataque }}</strong>
         </div>
+
+        <div>
+          <small>DEF</small>
+          <strong>{{ favorito.defesa }}</strong>
+        </div>
+
+        <div>
+          <small>VEL</small>
+          <strong>{{ favorito.velocidade }}</strong>
+        </div>
+      </div>
+
+      <ion-item>
+        <ion-label position="stacked">
+          Observação
+        </ion-label>
+
+        <ion-input [(ngModel)]="favorito.observacao"></ion-input>
+      </ion-item>
+
+      <div class="botoes">
+        <ion-button size="small" (click)="atualizar(favorito)">
+          Atualizar
+        </ion-button>
+
+        <ion-button size="small" color="danger" fill="outline" (click)="remover(favorito)">
+          Remover
+        </ion-button>
       </div>
     </div>
   </main>

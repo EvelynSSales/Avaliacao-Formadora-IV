@@ -65,6 +65,11 @@ export class HomePage implements OnInit {
       nome: pokemon.nome,
       imagem: pokemon.imagem,
       tipo: pokemon.tipo,
+      hp: pokemon.hp,
+      ataque: pokemon.ataque,
+      defesa: pokemon.defesa,
+      velocidade: pokemon.velocidade,
+      poder: pokemon.poder,
       observacao: 'meu pokémon favorito'
     });
 

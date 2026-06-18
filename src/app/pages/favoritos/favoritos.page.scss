@@ -154,3 +154,157 @@ ion-item {
     width: 100%;
   }
 }
+
+.carta {
+  position: relative;
+
+  margin-bottom: 22px;
+  padding: 16px;
+
+  background: linear-gradient(145deg, #fff7d6, #ffffff);
+  border: 5px solid #ffcb05;
+  border-radius: 28px;
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.14);
+}
+
+.carta::before {
+  content: '';
+
+  position: absolute;
+  inset: 8px;
+
+  pointer-events: none;
+
+  border: 2px solid rgba(42, 117, 187, 0.25);
+  border-radius: 20px;
+}
+
+.carta-topo {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.carta-topo h2 {
+  margin: 0;
+
+  font-size: 24px;
+  font-weight: 900;
+  color: #2b2b2b;
+}
+
+.carta-topo span {
+  display: inline-block;
+
+  margin-top: 6px;
+  padding: 5px 12px;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  color: #ffffff;
+  background: #2a75bb;
+  border-radius: 999px;
+}
+
+.carta-topo strong {
+  padding: 6px 10px;
+
+  font-size: 14px;
+
+  color: #d32f2f;
+  background: #ffffff;
+  border-radius: 999px;
+}
+
+.carta-imagem {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 210px;
+  margin: 16px 0 12px;
+
+  background:
+    radial-gradient(circle at center, #ffffff 0 30%, transparent 31%),
+    linear-gradient(135deg, #ffe0e0, #fff5f5);
+
+  border: 3px solid #2a75bb;
+  border-radius: 22px;
+}
+
+.carta-imagem img {
+  width: 180px;
+  height: 180px;
+
+  object-fit: contain;
+
+  filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0.18));
+}
+
+.poder-total {
+  position: relative;
+  z-index: 1;
+
+  margin-bottom: 12px;
+  padding: 10px 12px;
+
+  text-align: center;
+  font-size: 15px;
+  font-weight: 900;
+
+  color: #ffffff;
+  background: linear-gradient(135deg, #ef5350, #d32f2f);
+  border-radius: 16px;
+}
+
+.atributos {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  margin-bottom: 12px;
+}
+
+.atributos div {
+  padding: 10px;
+
+  text-align: center;
+
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid rgba(42, 117, 187, 0.2);
+}
+
+.atributos small {
+  display: block;
+
+  font-size: 11px;
+  font-weight: 900;
+  color: #777777;
+}
+
+.atributos strong {
+  display: block;
+
+  margin-top: 4px;
+
+  font-size: 18px;
+  color: #2a75bb;
+}
+
+.carta ion-item,
+.carta .botoes {
+  position: relative;
+  z-index: 1;
+}
