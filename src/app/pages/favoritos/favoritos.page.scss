@@ -422,12 +422,12 @@ ion-toolbar {
 }
 
 .texto-destaque {
-  position: absolute;
-  right: 54px;
-  bottom: 17px;
-  z-index: 3;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  margin-bottom: 5px;
   padding: 4px 9px;
   font-size: 10px; font-weight: 900;
-  color: #ffffff; background: rgba(0, 0, 0, 0.36);
+  color: #ffffff; background: rgba(0, 0, 0, 0.35);
   border-radius: 999px;
 }

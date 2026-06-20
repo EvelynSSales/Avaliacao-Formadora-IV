@@ -40,6 +40,9 @@
       </button>
 
       <article class="carta" [ngClass]="'tipo-' + favoritoAtual.tipo">
+        <span class="texto-destaque" *ngIf="favoritoAtual.destaque">
+          Destaque
+        </span>
 
         <div class="carta-topo">
           <div>
@@ -54,7 +57,7 @@
 
         <div class="imagem-area">
           <img [src]="favoritoAtual.imagem" [alt]="favoritoAtual.nome" />
-          
+
           <button
             class="estrela-destaque"
             type="button"
@@ -62,11 +65,6 @@
             (click)="destacar(favoritoAtual)">
             {{ favoritoAtual.destaque ? '★' : '☆' }}
           </button>
-
-          <span class="texto-destaque" *ngIf="favoritoAtual.destaque">
-            Destaque
-          </span>
-        
         </div>
 
         <div class="golpe">
