@@ -12,69 +12,102 @@
 
 <ion-content>
   <section class="topo">
-    <h1>Meus favoritos</h1>
-    <p>Edite suas observações ou remova Pokémon da sua lista.</p>
+    <h1>Minhas cartas</h1>
+    <p>Veja seus Pokémon favoritos em formato de carta.</p>
   </section>
 
   <main class="conteudo">
     <div class="vazio" *ngIf="favoritos.length === 0">
       <div class="icone">♡</div>
+
       <h2>Nenhum favorito ainda</h2>
-      <p>Volte para a Pokédex e escolha seus Pokémon favoritos.</p>
+
+      <p>
+        Volte para a Pokédex e escolha seus Pokémon favoritos.
+      </p>
     </div>
 
-    <div class="carta" *ngFor="let favorito of favoritos">
-      <div class="carta-topo">
-        <div>
-          <h2>{{ favorito.nome | titlecase }}</h2>
-          <span>{{ favorito.tipo | titlecase }}</span>
+    <section
+      class="area-carta"
+      *ngIf="favoritos.length > 0 && favoritoAtual"
+      (touchstart)="iniciarArraste($event)"
+      (touchend)="finalizarArraste($event)">
+
+      <button
+        class="botao-lateral botao-esquerda"
+        type="button"
+        (click)="cartaAnterior()"
+        [disabled]="indiceAtual === 0">
+        &lt;
+      </button>
+
+      <article class="carta">
+        <div class="carta-topo">
+          <div>
+            <span class="basico">BÁSICO</span>
+            <h2>{{ favoritoAtual.nome | titlecase }}</h2>
+          </div>
+
+          <strong>
+            HP {{ favoritoAtual.hp || 0 }}
+          </strong>
         </div>
 
-        <strong>HP {{ favorito.hp }}</strong>
-      </div>
-
-      <div class="carta-imagem">
-        <img [src]="favorito.imagem" [alt]="favorito.nome" />
-      </div>
-
-      <div class="poder-total">
-        Poder total: {{ favorito.poder }}
-      </div>
-
-      <div class="atributos">
-        <div>
-          <small>ATK</small>
-          <strong>{{ favorito.ataque }}</strong>
+        <div class="imagem-area">
+          <img [src]="favoritoAtual.imagem" [alt]="favoritoAtual.nome" />
         </div>
 
-        <div>
-          <small>DEF</small>
-          <strong>{{ favorito.defesa }}</strong>
+        <div class="tipo-area">
+          <span>{{ favoritoAtual.tipo | titlecase }}</span>
         </div>
 
-        <div>
-          <small>VEL</small>
-          <strong>{{ favorito.velocidade }}</strong>
+        <div class="golpe">
+          <div>
+            <h3>Ataque</h3>
+            <p>Força de ataque baseada nos atributos do Pokémon.</p>
+          </div>
+
+          <strong>{{ favoritoAtual.ataque || 0 }}</strong>
         </div>
-      </div>
 
-      <ion-item>
-        <ion-label position="stacked">
-          Observação
-        </ion-label>
+        <div class="atributos">
+          <div>
+            <small>DEF</small>
+            <strong>{{ favoritoAtual.defesa || 0 }}</strong>
+          </div>
 
-        <ion-input [(ngModel)]="favorito.observacao"></ion-input>
-      </ion-item>
+          <div>
+            <small>VEL</small>
+            <strong>{{ favoritoAtual.velocidade || 0 }}</strong>
+          </div>
 
-      <div class="botoes">
-        <ion-button size="small" (click)="atualizar(favorito)">
-          Atualizar
+          <div>
+            <small>PODER</small>
+            <strong>{{ favoritoAtual.poder || 0 }}</strong>
+          </div>
+        </div>
+
+        <div class="rodape-carta">
+          <span>{{ indiceAtual + 1 }} / {{ favoritos.length }}</span>
+          <span>{{ favoritoAtual.tipo | titlecase }}</span>
+        </div>
+
+        <ion-button
+          expand="block"
+          color="danger"
+          fill="outline"
+          (click)="remover(favoritoAtual)">
+          Remover carta
         </ion-button>
+      </article>
 
-        <ion-button size="small" color="danger" fill="outline" (click)="remover(favorito)">
-          Remover
-        </ion-button>
-      </div>
-    </div>
+      <button
+        class="botao-lateral botao-direita"
+        type="button"
+        (click)="proximaCarta()"
+        [disabled]="indiceAtual === favoritos.length - 1">
+        &gt;
+      </button>
+    </section>
   </main>
 </ion-content>
