@@ -92,13 +92,13 @@
           <span>{{ favoritoAtual.tipo | titlecase }}</span>
         </div>
 
-        <ion-button
-          expand="block"
-          color="danger"
-          fill="outline"
-          (click)="remover(favoritoAtual)">
-          Remover carta
-        </ion-button>
+      <ion-button
+        class="botao-remover"
+        expand="block"
+        fill="outline"
+        (click)="remover(favoritoAtual)">
+        Remover carta
+      </ion-button>
       </article>
 
       <button
