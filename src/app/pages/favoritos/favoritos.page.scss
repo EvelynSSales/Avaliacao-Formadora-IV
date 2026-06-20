@@ -333,6 +333,13 @@ ion-toolbar {
   z-index: 9999;
 }
 
+ion-toolbar {
+  position: relative;
+  --min-height: 56px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
 @media (max-width: 390px) {
   .conteudo {
     padding-left: 10px;
@@ -350,4 +357,42 @@ ion-toolbar {
   .botao-direita {
     right: 0;
   }
+}
+
+ion-toolbar {
+  position: relative;
+  --min-height: 56px;
+}
+
+.titulo-central {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+
+  height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  font-weight: 900;
+  text-align: center;
+
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.botao-voltar {
+  position: relative;
+  z-index: 2;
+
+  font-size: 34px;
+  font-weight: 900;
+
+  --color: #ffffff;
+  --padding-start: 12px;
+  --padding-end: 12px;
 }
