@@ -10,9 +10,9 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <section class="hero">
-    <div>
+<ion-content [scrollEvents]="true" (ionScroll)="verificarScroll($event)"> <section class="hero">
+    
+  <div>
       <p class="tag">API REST + Firebase</p>
       <h1>Escolha seus Pokémon favoritos</h1>
       <p class="descricao">
@@ -49,4 +49,13 @@
       </app-pokemon-card>
     </div>
   </main>
+
+  <button
+    class="botao-topo"
+    type="button"
+    *ngIf="mostrarBotaoTopo"
+    (click)="voltarTopo()">
+    ↑
+  </button>
+  
 </ion-content>

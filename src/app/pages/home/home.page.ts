@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -43,6 +43,10 @@ export class HomePage implements OnInit {
   carregando = true;
   mensagem = '';
   termoBusca = '';
+  mostrarBotaoTopo = false;
+
+  @ViewChild(IonContent)
+  content!: IonContent;
 
   constructor(
     private pokemonService: PokemonService,
@@ -92,4 +96,15 @@ export class HomePage implements OnInit {
 
     this.mensagem = `${pokemon.nome} foi adicionado aos favoritos!`;
   }
+
+  verificarScroll(event: any) {
+    const scrollTop = event.detail.scrollTop;
+
+    this.mostrarBotaoTopo = scrollTop > 300;
+  }
+
+  voltarTopo() {
+    this.content.scrollToTop(500);
+  }
+
 }
