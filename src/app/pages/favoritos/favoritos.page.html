@@ -29,9 +29,7 @@
 
     <section
       class="area-carta"
-      *ngIf="favoritos.length > 0 && favoritoAtual"
-      (touchstart)="iniciarArraste($event)"
-      (touchend)="finalizarArraste($event)">
+      *ngIf="favoritos.length > 0 && favoritoAtual">
 
       <button
         class="botao-lateral botao-esquerda"
@@ -42,6 +40,7 @@
       </button>
 
       <article class="carta" [ngClass]="'tipo-' + favoritoAtual.tipo">
+
         <div class="carta-topo">
           <div>
             <span class="basico">BÁSICO</span>
@@ -55,10 +54,19 @@
 
         <div class="imagem-area">
           <img [src]="favoritoAtual.imagem" [alt]="favoritoAtual.nome" />
-        </div>
+          
+          <button
+            class="estrela-destaque"
+            type="button"
+            [class.ativo]="favoritoAtual.destaque"
+            (click)="destacar(favoritoAtual)">
+            {{ favoritoAtual.destaque ? '★' : '☆' }}
+          </button>
 
-        <div class="tipo-area">
-          <span>{{ favoritoAtual.tipo | titlecase }}</span>
+          <span class="texto-destaque" *ngIf="favoritoAtual.destaque">
+            Destaque
+          </span>
+        
         </div>
 
         <div class="golpe">
@@ -92,13 +100,13 @@
           <span>{{ favoritoAtual.tipo | titlecase }}</span>
         </div>
 
-      <ion-button
-        class="botao-remover"
-        expand="block"
-        fill="outline"
-        (click)="remover(favoritoAtual)">
-        Remover carta
-      </ion-button>
+        <ion-button
+          class="botao-remover"
+          expand="block"
+          fill="outline"
+          (click)="remover(favoritoAtual)">
+          Remover carta
+        </ion-button>
       </article>
 
       <button

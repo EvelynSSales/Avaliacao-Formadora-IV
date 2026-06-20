@@ -21,6 +21,7 @@ export interface Favorito {
   velocidade: number;
   poder: number;
   observacao: string;
+  destaque?: boolean;
 }
 
 @Injectable({
@@ -50,4 +51,10 @@ export class FavoritosService {
     const favoritoDoc = doc(this.firestore, `favoritos/${id}`);
     return deleteDoc(favoritoDoc);
   }
+
+  destacar(id: string, destaque: boolean) {
+    const favoritoDoc = doc(this.firestore, `favoritos/${id}`);
+    return updateDoc(favoritoDoc, { destaque });
+  }
+
 }

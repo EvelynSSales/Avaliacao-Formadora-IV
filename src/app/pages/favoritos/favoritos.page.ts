@@ -83,6 +83,15 @@ export class FavoritosPage implements OnInit {
     }
   }
 
+  destacar(favorito: Favorito) {
+    if (!favorito.id) return;
+
+    this.favoritosService.destacar(
+      favorito.id,
+      !favorito.destaque
+    );
+  }
+
   remover(favorito: Favorito) {
     if (!favorito.id) return;
 
